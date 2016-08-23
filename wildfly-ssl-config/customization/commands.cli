@@ -1,0 +1,7 @@
+# Mark the commands below to be run as a batch
+batch
+
+/subsystem=undertow/server=default-server/https-listener=https:add(socket-binding=https, enabled-cipher-suites="ALL:!MD5:!DHA", enabled-protocols="TLSv1.2")
+
+# Execute the batch
+run-batch
