@@ -1,7 +1,9 @@
 # Mark the commands below to be run as a batch
 batch
 
-/subsystem=undertow/server=default-server/https-listener=https:add(socket-binding=https, enabled-cipher-suites="ALL:!MD5:!DHA", enabled-protocols="TLSv1.2")
+/subsystem=undertow/server=default-server/https-listener=https:write-attribute(name=enabled-cipher-suites, value="ALL:!MD5:!DHA")
+/subsystem=undertow/server=default-server/https-listener=https:write-attribute(name=enabled-protocols, value="TLSv1.2")
+reload
 
 # Execute the batch
 run-batch
