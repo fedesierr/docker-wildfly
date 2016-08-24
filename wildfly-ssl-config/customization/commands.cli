@@ -3,7 +3,6 @@ batch
 
 /subsystem=undertow/server=default-server/https-listener=https:write-attribute(name=enabled-cipher-suites, value="ALL:!MD5:!DHA")
 /subsystem=undertow/server=default-server/https-listener=https:write-attribute(name=enabled-protocols, value="TLSv1.2")
-reload
 
 # Execute the batch
 run-batch

@@ -17,10 +17,18 @@ function wait_for_server() {
 }
 
 echo "=> Starting WildFly server"
-$JBOSS_HOME/bin/$JBOSS_MODE.sh -c $JBOSS_CONFIG > /dev/null &
+$JBOSS_HOME/bin/$JBOSS_MODE.sh -c $JBOSS_CONFIG &
 
 echo "=> Waiting for the server to boot"
 wait_for_server
 
 echo "=> Executing the commands"
 $JBOSS_CLI -c --file=`dirname "$0"`/commands.cli
+
+echo "=> Shutting down WildFly"
+if [ "$JBOSS_MODE" = "standalone" ]; then
+  $JBOSS_CLI -c ":shutdown"
+else
+  $JBOSS_CLI -c "/host=*:shutdown"
+fi
+
